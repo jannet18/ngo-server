@@ -10,16 +10,5 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_26_084502) do
-  create_table "volunteers", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
-    t.string "email"
-    t.string "contact"
-    t.string "occupation"
-    t.text "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 0) do
 end

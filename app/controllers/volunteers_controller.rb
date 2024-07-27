@@ -2,7 +2,7 @@ class VolunteersController < ApplicationController
   def create
     volunteer = Volunteer.new(volunteer_params)
     if volunteer.save
-      render json: {status: "Success", message: "Saved"}, status: :created
+      render json: {status: "Thank you for registering as a volunteer. We will contact you soon.", message: "Saved"}, status: :created
     else
       render json: {status: "error", message: volunteer.errors.full_messages}, status: :unprocessable_entity
     end
@@ -10,6 +10,6 @@ class VolunteersController < ApplicationController
 
   private
   def volunteer_params
-    params.require(:volunteer).permit(:firstname, :lastname, :email, :contact, :occupation, :message)
+    params.require(:volunteer).permit(:fullname, :email, :contact, :area_of_interest, :church, :message)
   end
 end
