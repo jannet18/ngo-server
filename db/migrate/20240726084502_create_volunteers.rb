@@ -7,7 +7,7 @@ class CreateVolunteers < ActiveRecord::Migration[7.0]
       t.string :area_of_interest
       t.string :church
       t.text :message
-
+      t.boolean :accepted_terms
       t.timestamps
     end
   end
