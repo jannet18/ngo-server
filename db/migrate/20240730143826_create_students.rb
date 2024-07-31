@@ -14,6 +14,7 @@ class CreateStudents < ActiveRecord::Migration[7.0]
       t.string :availability
       t.text :commitments
       t.text :achievements
+      t.boolean :accepted_terms
 
       t.timestamps
     end

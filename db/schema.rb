@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_30_144401) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_30_172150) do
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "program_id", null: false
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_categories_on_program_id"
+  end
+
   create_table "programs", force: :cascade do |t|
     t.string "name"
+    t.text "description"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_144401) do
     t.string "availability"
     t.text "commitments"
     t.text "achievements"
+    t.boolean "accepted_terms"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_144401) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "categories", "programs"
   add_foreign_key "student_programs", "programs"
   add_foreign_key "student_programs", "students"
 end

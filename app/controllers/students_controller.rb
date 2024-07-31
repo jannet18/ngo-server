@@ -1,9 +1,9 @@
 class StudentsController < ApplicationController
     before_action :set_student, only: [:show, :edit, :update, :destroy]
-
+    
     def index
         @students = Student.all
-        render json: {students: @students}
+        render json: @students
     end
 
     def show
@@ -22,10 +22,12 @@ class StudentsController < ApplicationController
     def create
         @student = Student.new(student_params)
         if @student.save
-            redirect_to @student, notice: "student was successfully created."
+            # redirect_to @student, notice: "student was successfully created."
+            render json: @student, status: :created
         else
             @programs = Program.all
-            render :new
+            render json: :new
+            # render json: {error: @student.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
@@ -35,6 +37,7 @@ class StudentsController < ApplicationController
         else
             @programs = Program.all
             render :edit
+        end
     end
 
     def destroy
@@ -49,7 +52,7 @@ class StudentsController < ApplicationController
 
     def student_params
         params.require(:student).permit(
-            :fullname, :gender, :date, :contact, :church, :email, :responsibility, :description, :motivation, :challenges, :availability, :commitments, :achievements, program_ids: [] 
+            :fullname, :gender, :date, :contact, :church, :email, :responsibility, :description, :motivation, :challenges, :availability, :commitments, :achievements, :accepted_terms, program_ids: [] 
         )
     end
 end
