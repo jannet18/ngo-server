@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_30_172150) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_01_135716) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -19,6 +19,33 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_172150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["program_id"], name: "index_categories_on_program_id"
+  end
+
+  create_table "mpesas", force: :cascade do |t|
+    t.string "checkoutRequestID"
+    t.string "mearchantRequestID"
+    t.string "amount"
+    t.string "mpesaReceiptNumber"
+    t.string "PhoneNumber"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.decimal "price"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "programs", force: :cascade do |t|
